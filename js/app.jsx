@@ -1,7 +1,9 @@
 import React from 'react'
 import axios from 'axios'
+import { Router, Route } from 'react-router'
 import StarshipsTable from './starship_table.jsx'
 import TableFilters from './filters.jsx'
+import StarshipInfo from './starship_info.jsx'
 
 const getStarshipData = function getStarshipData(component, url) {
   axios
@@ -18,7 +20,18 @@ const getStarshipData = function getStarshipData(component, url) {
       })
 }
 
-const StartWars = React.createClass({
+const StarWarsRouter = React.createClass({
+  render() {
+    return (
+        <Router>
+          <Route path="/" component={StarWarsIndex}/>
+          <Route path="starship" component={StarshipInfo}/>
+        </Router>
+    )
+  }
+});
+
+const StarWarsIndex = React.createClass({
   childContextTypes: {
     nameFilterChange: React.PropTypes.func,
   },
@@ -65,4 +78,4 @@ const StartWars = React.createClass({
 
 
 
-React.render(<StartWars />, document.querySelector('.app'));
+React.render(<StarWarsRouter />, document.querySelector('.app'));
