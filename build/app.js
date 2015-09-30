@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "43f4dbca03bb5cecf168"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "2e0f9d7ab19914a11102"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -566,6 +566,10 @@
 
 	var _starship_tableJsx2 = _interopRequireDefault(_starship_tableJsx);
 
+	var _filtersJsx = __webpack_require__(173);
+
+	var _filtersJsx2 = _interopRequireDefault(_filtersJsx);
+
 	var getStarshipData = function getStarshipData(component, url) {
 	  _axios2['default'].get(url).then(function (response) {
 	    var updatedStarships = component.state.starships.concat(response.data.results);
@@ -581,14 +585,42 @@
 	var StartWars = _react2['default'].createClass({
 	  displayName: 'StartWars',
 
+	  childContextTypes: {
+	    nameFilterChange: _react2['default'].PropTypes.func
+	  },
+	  getChildContext: function getChildContext() {
+	    return {
+	      nameFilterChange: this.nameFilterChange
+	    };
+	  },
+
+	  nameFilterChange: function nameFilterChange(event) {
+	    this.setState({ nameFilter: event.target.value });
+	  },
+
+	  filterStarships: function filterStarships(starships) {
+	    var _this = this;
+
+	    return starships.filter(function (starship) {
+	      if (_this.state.nameFilter) {
+	        return starship.name.toLowerCase().indexOf(_this.state.nameFilter.toLowerCase()) > -1;
+	      } else {
+	        return true;
+	      }
+	    });
+	  },
+
 	  getInitialState: function getInitialState() {
-	    return { starships: [] };
+	    return {
+	      starships: [],
+	      nameFilter: ""
+	    };
 	  },
 	  componentWillMount: function componentWillMount() {
 	    getStarshipData(this, 'http://swapi.co/api/starships/');
 	  },
 	  render: function render() {
-	    return _react2['default'].createElement('div', null, _react2['default'].createElement('h1', null, 'KualiCo Recruitment'), _react2['default'].createElement(_starship_tableJsx2['default'], { starships: this.state.starships }));
+	    return _react2['default'].createElement('div', null, _react2['default'].createElement('h1', null, 'KualiCo Recruitment'), _react2['default'].createElement(_filtersJsx2['default'], { nameFilter: this.state.nameFilter }), _react2['default'].createElement(_starship_tableJsx2['default'], { starships: this.filterStarships(this.state.starships) }));
 	  }
 	});
 
@@ -22622,6 +22654,51 @@
 	});
 
 	exports['default'] = StarshipsTable;
+	module.exports = exports['default'];
+
+/***/ },
+/* 172 */,
+/* 173 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+
+	function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : { 'default': obj };
+	}
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _numeral = __webpack_require__(170);
+
+	var _numeral2 = _interopRequireDefault(_numeral);
+
+	var TableFilters = _react2['default'].createClass({
+	    displayName: 'TableFilters',
+
+	    render: function render() {
+	        return _react2['default'].createElement('div', { id: 'filters' }, _react2['default'].createElement(NameFilter, { nameFilter: this.props.nameFilter }));
+	    }
+	});
+
+	var NameFilter = _react2['default'].createClass({
+	    displayName: 'NameFilter',
+
+	    contextTypes: {
+	        nameFilterChange: _react2['default'].PropTypes.func
+	    },
+	    render: function render() {
+	        return _react2['default'].createElement('span', null, 'Name: ', _react2['default'].createElement('input', { type: 'text', id: 'name_filter', value: this.props.nameFilter, onChange: this.context.nameFilterChange }));
+	    }
+	});
+
+	exports['default'] = TableFilters;
 	module.exports = exports['default'];
 
 /***/ }

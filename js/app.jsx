@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import StarshipsTable from './starship_table.jsx'
+import TableFilters from './filters.jsx'
 
 const getStarshipData = function getStarshipData(component, url) {
   axios
@@ -18,8 +19,35 @@ const getStarshipData = function getStarshipData(component, url) {
 }
 
 const StartWars = React.createClass({
+  childContextTypes: {
+    nameFilterChange: React.PropTypes.func,
+  },
+  getChildContext() {
+    return {
+      nameFilterChange: this.nameFilterChange,
+    }
+  },
+
+  nameFilterChange(event) {
+    this.setState({nameFilter: event.target.value});
+  },
+
+  filterStarships(starships) {
+
+    return starships.filter((starship) => {
+      if (this.state.nameFilter) {
+        return starship.name.toLowerCase().indexOf(this.state.nameFilter.toLowerCase()) > -1;
+      } else {
+        return true;
+      }
+    });
+  },
+
   getInitialState() {
-    return {starships: []}
+    return {
+      starships: [],
+      nameFilter: ""
+    }
   },
   componentWillMount() {
     getStarshipData(this, 'http://swapi.co/api/starships/');
@@ -28,7 +56,8 @@ const StartWars = React.createClass({
     return (
       <div>
         <h1>KualiCo Recruitment</h1>
-        <StarshipsTable starships={this.state.starships}/>
+        <TableFilters nameFilter={this.state.nameFilter}/>
+        <StarshipsTable starships={this.filterStarships(this.state.starships)}/>
       </div>
     )
   }

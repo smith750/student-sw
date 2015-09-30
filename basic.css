@@ -15,3 +15,7 @@ th {
 td {
     font-size: 14px;
 }
+
+#filters {
+    border: 1px;
+}
