@@ -14,7 +14,7 @@ You need node.js installed.
 
 ## Developing
 
-The entry file for your app is in `app/js/app.js`, so start editing there.
+The entry file for your app is in `app/js/app.jsx`, so start editing there.
 Running `npm run watch` will run webpack and rebuild your app whenever the
 JavaScript changes. Babel means you can use fancy ES2015 goodness. Go forth and
 build neat things!

@@ -1,0 +1,17 @@
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h1 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+th {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+td {
+    font-size: 14px;
+}
