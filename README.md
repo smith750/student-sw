@@ -1,20 +1,10 @@
-# React Boilerplate
+# KualiCo Recruiting exercise
 
-This is a small boilerplate for building
-[React](http://facebook.github.io/react/) apps with
-[Babel](https://babeljs.io/) and [webpack](https://webpack.github.io/).
+## How to Run
 
-## Installation
+If you see this, you already know how to run
 
-You need node.js installed.
+## Progress
 
-* Run `npm install` from inside this folder to install the dependencies.
-* Run `npm run watch` to build the JavaScript.
-* Open `index.html` in your browser to see your code.
-
-## Developing
-
-The entry file for your app is in `app/js/app.jsx`, so start editing there.
-Running `npm run watch` will run webpack and rebuild your app whenever the
-JavaScript changes. Babel means you can use fancy ES2015 goodness. Go forth and
-build neat things!
+It took me 1.15 hr to get the full table render
+It took me an extra 20 minutes to get name filtering
