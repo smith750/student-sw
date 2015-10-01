@@ -9,20 +9,20 @@ const StarshipInfo = React.createClass({
            <div>
                <table className="starship">
 
-                   <StarshipInfoRow label="Name" info={this.props.params.starship.name}/>
-                   <StarshipInfoRow label="Model" info={this.props.params.starship.model}/>
-                   <StarshipInfoRow label="Manufacturer" info={this.props.params.starship.manufacturer}/>
-                   <StarshipInfoRow label="Cost (in Credits)" info={simpleFormat(this.props.params.starship.cost_in_credits)}/>
-                   <StarshipInfoRow label="Length" info={simpleFormat(this.props.params.starship['length'])}/>
-                   <StarshipInfoRow label="Maximum Atmosphering Speed" info={simpleFormat(this.props.params.starship.max_atmosphering_speed)}/>
-                   <StarshipInfoRow label="Crew" info={simpleFormat(this.props.params.starship.crew)}/>
-                   <StarshipInfoRow label="Passengers" info={simpleFormat(this.props.params.starship.passengers)}/>
-                   <StarshipInfoRow label="Cargo Capacity" info={this.props.params.starship.cargo_capacity}/>
-                   <StarshipInfoRow label="Consumables" info={this.props.params.starship.consumables}/>
-                   <StarshipInfoRow label="Hyperdrive Rating" info={this.props.params.starship.hyperdrive_rating}/>
-                   <StarshipInfoRow label="MGLT" info={this.props.params.starship.MGLT}/>
-                   <StarshipInfoRow label="Starship Class" info={this.props.params.starship.starship_class}/>
-                   <StarshipInfoRow label="Pilots" info={this.props.params.starship.pilots.map((pilot) => { return pilot.name; }).join(',')}/>
+                   <StarshipInfoRow label="Name" info={this.props.location.state.starship.name}/>
+                   <StarshipInfoRow label="Model" info={this.props.location.state.starship.model}/>
+                   <StarshipInfoRow label="Manufacturer" info={this.props.location.state.starship.manufacturer}/>
+                   <StarshipInfoRow label="Cost (in Credits)" info={simpleFormat(this.props.location.state.starship.cost_in_credits)}/>
+                   <StarshipInfoRow label="Length" info={simpleFormat(this.props.location.state.starship['length'])}/>
+                   <StarshipInfoRow label="Maximum Atmosphering Speed" info={simpleFormat(this.props.location.state.starship.max_atmosphering_speed)}/>
+                   <StarshipInfoRow label="Crew" info={simpleFormat(this.props.location.state.starship.crew)}/>
+                   <StarshipInfoRow label="Passengers" info={simpleFormat(this.props.location.state.starship.passengers)}/>
+                   <StarshipInfoRow label="Cargo Capacity" info={this.props.location.state.starship.cargo_capacity}/>
+                   <StarshipInfoRow label="Consumables" info={this.props.location.state.starship.consumables}/>
+                   <StarshipInfoRow label="Hyperdrive Rating" info={this.props.location.state.starship.hyperdrive_rating}/>
+                   <StarshipInfoRow label="MGLT" info={this.props.location.state.starship.MGLT}/>
+                   <StarshipInfoRow label="Starship Class" info={this.props.location.state.starship.starship_class}/>
+                   <StarshipInfoRow label="Pilots" info={this.props.location.state.starship.pilots.map((pilot) => { return pilot.name; }).join(',')}/>
 
                </table>
                <div><Link to="/">Back</Link></div>

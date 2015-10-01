@@ -9,10 +9,12 @@ const getStarshipData = function getStarshipData(component, url) {
   axios
       .get(url)
       .then((response) => {
-        let updatedStarships = component.state.starships.concat(response.data.results);
-        component.setState({starships: updatedStarships});
-        if (response.data.next) {
-          getStarshipData(component, response.data.next);
+        if (component.isMounted()) {
+          let updatedStarships = component.state.starships.concat(response.data.results);
+          component.setState({starships: updatedStarships});
+          if (response.data.next) {
+            getStarshipData(component, response.data.next);
+          }
         }
       })
       .catch((response) => {

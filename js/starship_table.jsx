@@ -34,14 +34,9 @@ const StarshipHeader = React.createClass({
 
 const StarshipRow = React.createClass({
     render() {
-        let params = {
-            starship: this.props.starship,
-            message: 'hi'
-        }
         return (
             <tr>
-                {/*<td><Link to="/starship" params={params}>{this.props.starship.name}</Link></td>*/}
-                <td>{this.props.starship.name}</td>
+                <td><Link to="/starship" state={{starship: this.props.starship}}>{this.props.starship.name}</Link></td>
                 <td>{simpleFormat(this.props.starship.cost_in_credits)}</td>
                 <td>{simpleFormat(this.props.starship['length'])}</td>
                 <td>{simpleFormat(this.props.starship.crew)}</td>
